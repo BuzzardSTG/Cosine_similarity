@@ -30,7 +30,7 @@ st_import_end = time.time()
 ts_import_end = datetime.datetime.fromtimestamp(st_import_end).strftime(timestamp_format)
 print(ts_import_end)
 difference = st_import_end-st_import
-print(f"Data import from DB completed in: {difference} sec")
+print(f"Data import from DB(MySQL - longtext) completed in: {difference} sec")
 
 
 
@@ -61,7 +61,7 @@ st_import_end = time.time()
 ts_import_end = datetime.datetime.fromtimestamp(st_import_end).strftime(timestamp_format)
 print(ts_import_end)
 difference = st_import_end-st_import
-print(f"Data import from DB completed in: {difference} sec")
+print(f"Data import from DB(numeric ARRAY) completed in: {difference} sec")
 
 
 ############################### JSON ###############################
