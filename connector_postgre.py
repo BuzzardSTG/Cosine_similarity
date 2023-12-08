@@ -6,7 +6,7 @@ class PostgreSQLConnector:
 
     def __init__(self, ini_file='config.ini'):
         # Read database credentials from the INI file
-        self.host, self.user, self.password, self.database, self.table = self.read_database_credentials(ini_file)
+        self.host, self.user, self.password, self.database, self.table, self.table2, self.table3 = self.read_database_credentials(ini_file)
         self.connection = None
         self.cursor = None
 
@@ -21,7 +21,9 @@ class PostgreSQLConnector:
             config.get('DATABASE CREDENTIALS postgreSQL', 'user'),
             config.get('DATABASE CREDENTIALS postgreSQL', 'password'),
             config.get('DATABASE CREDENTIALS postgreSQL', 'database'),
-            config.get('DATABASE CREDENTIALS postgreSQL', 'table')
+            config.get('DATABASE CREDENTIALS postgreSQL', 'table'),
+            config.get('DATABASE CREDENTIALS postgreSQL', 'table2'),
+            config.get('DATABASE CREDENTIALS postgreSQL', 'table3')
         )
 
     def connect(self):
@@ -56,20 +58,3 @@ class PostgreSQLConnector:
         finally:
             # Disconnect from the database
             self.disconnect()
-
-# Example usage
-if __name__ == "__main__":
-    # Create an instance of PostgreSQLConnector
-    connector = PostgreSQLConnector()
-
-    # Example query: SELECT * FROM your_table;
-    table_name = connector.table
-    select_query = sql.SQL("SELECT schematic_id FROM {}").format(sql.Identifier(table_name))
-
-    # Execute the query
-    results = connector.execute_query(select_query)
-
-    # Display the results
-    if results:
-        for row in results:
-            print(row)
